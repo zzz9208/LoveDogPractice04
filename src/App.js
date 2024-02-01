@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 03 <code>src/App.js</code> and save to reload.sdfasdf
+          Edit 04
           {myText}
         </p>
     
