@@ -25,9 +25,8 @@ jobs:
       # echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> $GITHUB_ENV
     - name: Set Environment Variable for React App
       run: | 
-        echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env.production
-        echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env.production
-
+        echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
+        echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env
     - name: Build React App
       run: npm run build
       env:
