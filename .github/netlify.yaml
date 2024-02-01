@@ -1,27 +1,27 @@
-deploy:
-  runs-on: ubuntu-latest
-  needs: build
-  steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+# deploy:
+#   runs-on: ubuntu-latest
+#   needs: build
+#   steps:
+#     - name: Checkout Repository
+#       uses: actions/checkout@v2
 
-    - name: Set up Node.js with dotenv
-      uses: actions/setup-node@v3
-      with:
-          node-version: 14
-          clean: true
-          with-dotenv: true
+#     - name: Set up Node.js with dotenv
+#       uses: actions/setup-node@v3
+#       with:
+#           node-version: 14
+#           clean: true
+#           with-dotenv: true
 
-    - name: Install Netlify CLI
-      run: npm install -g netlify-cli
+#     - name: Install Netlify CLI
+#       run: npm install -g netlify-cli
 
-    - name: Deploy to Netlify
-      run: |
-        npm install
-        npm run build
-        netlify deploy --prod --dir=build
-      env:
-        CI: "" # 경고를 에러로 보지 않게 함
-        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-        REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#     - name: Deploy to Netlify
+#       run: |
+#         npm install
+#         npm run build
+#         netlify deploy --prod --dir=build
+#       env:
+#         CI: "" # 경고를 에러로 보지 않게 함
+#         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+#         REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
+#         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
