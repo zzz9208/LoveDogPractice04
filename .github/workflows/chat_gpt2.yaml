@@ -31,18 +31,16 @@ jobs:
         echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env
         echo "NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}" >> .env
 
-    - name: Build React App
-      run: npm run build
-      env:
-        CI: ""
-
     - name: Debug Secret Value
       run: |
         echo "REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}"
         echo "REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}"
         echo "NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
 
-
+    - name: Build React App
+      run: npm run build
+      env:
+        CI: ""
 
 
   deploy:
