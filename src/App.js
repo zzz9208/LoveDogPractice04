@@ -1,4 +1,7 @@
 import './App.css';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function App() {
   const myText = process.env.REACT_APP_ACTION_TEXT;
@@ -8,7 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 36
+          Edit 38
           {myText}
         </p>
     
