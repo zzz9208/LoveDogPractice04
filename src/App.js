@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 23
+          Edit 24
           {myText}
         </p>
     
