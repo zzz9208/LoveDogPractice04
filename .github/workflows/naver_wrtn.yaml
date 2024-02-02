@@ -5,13 +5,16 @@ on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    defaults:
+        run:
+            working-directory: ./fe # 기본 워킹 디렉토리 설정
+            
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14
           with-dotenv: true
