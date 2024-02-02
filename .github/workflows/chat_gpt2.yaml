@@ -37,12 +37,22 @@ jobs:
         echo "REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}"
         echo "NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
 
+    - name: Check Current Directory
+      run: pwd
+
     - name: Build React App
       run: npm run build
       env:
         CI: ""
 
+    - name: Check Build Output
+      run: ls -la build
 
+
+
+
+
+      
   deploy:
     runs-on: ubuntu-latest
     needs: build
