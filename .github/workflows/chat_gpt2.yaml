@@ -39,7 +39,7 @@ jobs:
 
     - name: Install react-scripts
       run: npm install react-scripts
-      
+
     - name: Set Environment Variable for React App
       run: | 
         echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
@@ -61,15 +61,15 @@ jobs:
       run: npm run build
       env:
         CI: ""
-
-    # - name: Check Build Output
-    #   run: |
-    #     npm run build
-    #     BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
-    #     echo "Build Path: $BUILD_PATH"
-    #     ls -la "$BUILD_PATH"
-    #   env:
-    #     CI: ""
+        
+    - name: Check Build Output
+      run: |
+        npm run build
+        BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
+        echo "Build Path: $BUILD_PATH"
+        ls -la "$BUILD_PATH"
+      env:
+        CI: ""
 
 
 
