@@ -38,8 +38,11 @@ jobs:
       run: npm install
 
     - name: Install react-scripts
-      run: npm install react-scripts
-
+      run: |
+        if [ ! -d "node_modules/react-scripts" ]; then
+          npm install react-scripts
+        fi
+        
     - name: Set Environment Variable for React App
       run: | 
         echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
