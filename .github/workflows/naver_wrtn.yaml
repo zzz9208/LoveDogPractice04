@@ -5,11 +5,26 @@ on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-            working-directory: ./fe # 기본 워킹 디렉토리 설정
-            
+    # defaults:
+    #     run:
+    #         working-directory: ./fe # 기본 워킹 디렉토리 설정
+
     steps:
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+
+
       - name: Checkout code
         uses: actions/checkout@v3
         
