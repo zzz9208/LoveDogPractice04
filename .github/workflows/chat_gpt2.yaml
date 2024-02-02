@@ -42,7 +42,7 @@ jobs:
         if [ ! -d "node_modules/react-scripts" ]; then
           npm install react-scripts
         fi
-        
+
     - name: Set Environment Variable for React App
       run: | 
         echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
@@ -102,6 +102,7 @@ jobs:
     - name: Deploy to Netlify
       #run: netlify deploy --prod --dir=build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
       run: |
+        echo ${{ github.workspace }}
         NETLIFY_SITE_ID=${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
         BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)

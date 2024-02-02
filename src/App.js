@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 70
+          Edit 71
           {myText}
         </p>
     
