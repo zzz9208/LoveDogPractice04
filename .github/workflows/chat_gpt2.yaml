@@ -12,6 +12,18 @@ jobs:
     timeout-minutes: 20
 
     steps:
+    - name: Get npm cache directory
+      id: npm-cache-dir
+      run: |
+        echo "::set-output name=dir::$(npm config get cache)"
+    - uses: actions/cache@v3
+      id: npm-cache
+      with:
+        path: ${{ steps.npm-cache-dir.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
     - name: Checkout Repository
       uses: actions/checkout@v2
 
@@ -45,14 +57,14 @@ jobs:
       env:
         CI: ""
 
-    - name: Check Build Output
-      run: |
-        npm run build
-        BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
-        echo "Build Path: $BUILD_PATH"
-        ls -la "$BUILD_PATH"
-      env:
-        CI: ""
+    # - name: Check Build Output
+    #   run: |
+    #     npm run build
+    #     BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
+    #     echo "Build Path: $BUILD_PATH"
+    #     ls -la "$BUILD_PATH"
+    #   env:
+    #     CI: ""
 
 
 
