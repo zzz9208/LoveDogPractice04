@@ -42,6 +42,9 @@ jobs:
         echo "REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}"
         echo "NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
 
+
+
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -64,7 +67,7 @@ jobs:
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NETLIFY_AUTH_TOKEN }}" > ~/.npmrc
 
     - name: Deploy to Netlify
-      run: netlify deploy --prod --dir=build --site ${{ secrets.NETLIFY_SITE_ID }} --auth $NETLIFY_AUTH_TOKEN
+      run: netlify deploy --prod --dir=build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
       env:
         CI: ""
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
