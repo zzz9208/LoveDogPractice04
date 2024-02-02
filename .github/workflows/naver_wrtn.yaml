@@ -1,60 +1,60 @@
-name: React Web Project
+# name: React Web Project
 
-on: [push] 
+# on: [push] 
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    # defaults:
-    #     run:
-    #         working-directory: ./fe # 기본 워킹 디렉토리 설정
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+#     # defaults:
+#     #     run:
+#     #         working-directory: ./fe # 기본 워킹 디렉토리 설정
 
-    env:
-        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-        REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
+#     env:
+#         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+#         REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
 
-    steps:
+#     steps:
 
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+#       - name: Get npm cache directory
+#         id: npm-cache-dir
+#         run: |
+#           echo "::set-output name=dir::$(npm config get cache)"
+#       - uses: actions/cache@v3
+#         id: npm-cache
+#         with:
+#           path: ${{ steps.npm-cache-dir.outputs.dir }}
+#           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#           restore-keys: |
+#             ${{ runner.os }}-node-
 
-      - name: Checkout code
-        uses: actions/checkout@v3
+#       - name: Checkout code
+#         uses: actions/checkout@v3
         
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          with-dotenv: true
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 14
+#           with-dotenv: true
 
 
-      - name: Create .env file
-        run: |
-            echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
-            echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env
+#       - name: Create .env file
+#         run: |
+#             echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
+#             echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Build
-        run: npm run build
-        env:
-            CI: ""
+#       - name: Build
+#         run: npm run build
+#         env:
+#             CI: ""
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-          REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
-        with:
-          args: deploy --prod --dir=build
+#       - name: Deploy to Netlify
+#         uses: netlify/actions/cli@master
+#         env:
+#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+#           REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
+#         with:
+#           args: deploy --prod --dir=build
