@@ -61,17 +61,18 @@ jobs:
       run: npm run build
       env:
         CI: ""
-        
+
     - name: Check Build Output
       run: |
-        npm run build
         BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
+        if [ -z "$BUILD_PATH" ]; then
+        echo "Error: Build path not found."
+        exit 1
+        fi
         echo "Build Path: $BUILD_PATH"
         ls -la "$BUILD_PATH"
       env:
         CI: ""
-
-
 
   deploy:
     runs-on: ubuntu-latest
