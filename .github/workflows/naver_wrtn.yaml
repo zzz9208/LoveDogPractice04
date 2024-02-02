@@ -9,6 +9,10 @@ jobs:
     #     run:
     #         working-directory: ./fe # 기본 워킹 디렉토리 설정
 
+    env:
+        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+        REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
+
     steps:
 
       - name: Get npm cache directory
