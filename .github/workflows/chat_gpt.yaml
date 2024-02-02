@@ -52,17 +52,21 @@ jobs:
         node-version: 14
         clean: true
         with-dotenv: true
-    
-    - name: Install Netlify CLI
-      run: npm install -g netlify-cli@latest
 
-    - name: Deploy to Netlify
-      run: |
-        npm install
-        npm run build
-        netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --json
+
+    
+    - name: Deploy to Netlify (Install)
+      run: npm install
+      
+    - name: Deploy to Netlify (Build)
+      run: npm run build
+      
+    - name: Deploy to Netlify (Netlify Deploy)
+      run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --json
       env:
-        CI: ""
-        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-        REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          CI: ""
+          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+          REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+ 
