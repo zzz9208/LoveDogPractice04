@@ -63,7 +63,7 @@ jobs:
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NETLIFY_AUTH_TOKEN }}" > ~/.npmrc
 
     - name: Deploy to Netlify
-      run: netlify deploy --prod --dir=build --site ${{ secrets.YOUR_NETLIFY_SITE_ID }}
+      run: netlify deploy --prod --dir=build --site ${{ secrets.NETLIFY_SITE_ID }}
       env:
         CI: ""
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
