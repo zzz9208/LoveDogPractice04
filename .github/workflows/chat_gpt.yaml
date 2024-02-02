@@ -63,7 +63,8 @@ jobs:
       
     - name: Deploy to Netlify (Netlify Deploy)
       #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --json
-      run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --non-interactive
+      #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --non-interactive
+      run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN
       env:
           CI: ""
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
