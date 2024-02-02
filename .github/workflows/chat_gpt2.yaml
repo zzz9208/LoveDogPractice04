@@ -56,6 +56,9 @@ jobs:
         clean: true
         with-dotenv: true
 
+    - name: Install Netlify CLI
+      run: npm install -g netlify-cli@latest
+
     - name: Set up Netlify CLI with Authentication Token
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NETLIFY_AUTH_TOKEN }}" > ~/.npmrc
 
