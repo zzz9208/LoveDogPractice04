@@ -70,4 +70,3 @@ jobs:
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
         REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-s
