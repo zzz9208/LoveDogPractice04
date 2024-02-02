@@ -27,8 +27,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-
-
       - name: Checkout code
         uses: actions/checkout@v3
         
@@ -37,6 +35,12 @@ jobs:
         with:
           node-version: 14
           with-dotenv: true
+
+
+      - name: Create .env file
+        run: |
+            echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
+            echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env
 
       - name: Install dependencies
         run: npm install
