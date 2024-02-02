@@ -1,7 +1,7 @@
 import './App.css';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
 function App() {
   const myText = process.env.REACT_APP_ACTION_TEXT;
