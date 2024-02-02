@@ -47,12 +47,12 @@ jobs:
 
     - name: Check Build Output
       run: |
+        npm run build
         BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
         echo "Build Path: $BUILD_PATH"
         ls -la "$BUILD_PATH"
-
-
-
+      env:
+        CI: ""
 
 
 
