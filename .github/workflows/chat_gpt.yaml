@@ -1,57 +1,57 @@
-name: Build and Deploy4
+# name: Build and Deploy4
 
-on: [push]
+# on: [push]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20  # 예: 최대 10분까지 허용
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 20  # 예: 최대 10분까지 허용
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+#     steps:
+#     - name: Checkout Repository
+#       uses: actions/checkout@v2
 
-    - name: Set up Node.js with dotenv
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
-        clean: true
-        with-dotenv: true
+#     - name: Set up Node.js with dotenv
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: 14
+#         clean: true
+#         with-dotenv: true
 
-    - name: Install Dependencies
-      run: npm install
+#     - name: Install Dependencies
+#       run: npm install
 
-    - name: Set Environment Variable for React App
-      run: | 
-        echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
-        echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env
-        echo "NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}" >> .env
+#     - name: Set Environment Variable for React App
+#       run: | 
+#         echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
+#         echo "REACT_APP_ACTION_TEXT=${{ secrets.REACT_APP_ACTION_TEXT }}" >> .env
+#         echo "NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}" >> .env
 
-    - name: Build React App
-      run: npm run build
-      env:
-        CI: ""
+#     - name: Build React App
+#       run: npm run build
+#       env:
+#         CI: ""
 
-    - name: Debug Secret Value
-      run: |
-        echo "REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}"
-        echo "REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}"
-        echo "NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
+#     - name: Debug Secret Value
+#       run: |
+#         echo "REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}"
+#         echo "REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}"
+#         echo "NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    timeout-minutes: 20  # 예: 최대 10분까지 허용
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+#   deploy:
+#     runs-on: ubuntu-latest
+#     needs: build
+#     timeout-minutes: 20  # 예: 최대 10분까지 허용
+#     steps:
+#     - name: Checkout Repository
+#       uses: actions/checkout@v2
 
-    - name: Set up Node.js with dotenv
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
-        clean: true
-        with-dotenv: true
+#     - name: Set up Node.js with dotenv
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: 14
+#         clean: true
+#         with-dotenv: true
 
 
 
@@ -60,43 +60,43 @@ jobs:
 
   
 
-    - name: Set up Netlify CLI with Authentication Token
-      run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NETLIFY_AUTH_TOKEN }}" > ~/.npmrc
+#     - name: Set up Netlify CLI with Authentication Token
+#       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NETLIFY_AUTH_TOKEN }}" > ~/.npmrc
       
-    - name: Deploy to Netlify
-      run: netlify deploy --prod --dir=build --site 52447d8d-e3a6-4155-ba48-794bad97e1d3
+#     - name: Deploy to Netlify
+#       run: netlify deploy --prod --dir=build --site 52447d8d-e3a6-4155-ba48-794bad97e1d3
       
-      env:
-        CI: ""
-        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-        REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
-        YOUR_NETLIFY_SITE_ID: "52447d8d-e3a6-4155-ba48-794bad97e1d3"  # 여기에 실제 Site ID를 입력하세요
+#       env:
+#         CI: ""
+#         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+#         REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
+#         YOUR_NETLIFY_SITE_ID: "52447d8d-e3a6-4155-ba48-794bad97e1d3"  # 여기에 실제 Site ID를 입력하세요
         
 
-    # - name: Install Netlify CLI
-    #   run: npm install -g netlify-cli@latest
+#     # - name: Install Netlify CLI
+#     #   run: npm install -g netlify-cli@latest
         
-    # - name: Login to Netlify
-    #   run: netlify login -e $NETLIFY_AUTH_TOKEN
-    #   env:
-    #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}     
+#     # - name: Login to Netlify
+#     #   run: netlify login -e $NETLIFY_AUTH_TOKEN
+#     #   env:
+#     #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}     
 
-    # - name: Deploy to Netlify (Install)
-    #   run: npm install
+#     # - name: Deploy to Netlify (Install)
+#     #   run: npm install
       
-    # - name: Deploy to Netlify (Build)
-    #   run: npm run build
+#     # - name: Deploy to Netlify (Build)
+#     #   run: npm run build
       
-    # - name: Deploy to Netlify (Netlify Deploy)
-    #   #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --json
-    #   #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --non-interactive
-    #   #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN
-    #   run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --site YOUR_NETLIFY_SITE_ID
+#     # - name: Deploy to Netlify (Netlify Deploy)
+#     #   #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --json
+#     #   #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --non-interactive
+#     #   #run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN
+#     #   run: netlify deploy --prod --dir=build --auth $NETLIFY_AUTH_TOKEN --site YOUR_NETLIFY_SITE_ID
       
-    #   env:
-    #       CI: ""
-    #       REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-    #       REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
-    #       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-    #       YOUR_NETLIFY_SITE_ID: "52447d8d-e3a6-4155-ba48-794bad97e1d3"  # 여기에 실제 Site ID를 입력하세요
+#     #   env:
+#     #       CI: ""
+#     #       REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+#     #       REACT_APP_ACTION_TEXT: ${{ secrets.REACT_APP_ACTION_TEXT }}
+#     #       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#     #       YOUR_NETLIFY_SITE_ID: "52447d8d-e3a6-4155-ba48-794bad97e1d3"  # 여기에 실제 Site ID를 입력하세요
  
