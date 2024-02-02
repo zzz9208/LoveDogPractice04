@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -9,7 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 17
+          Edit 18
           {myText}
         </p>
     
