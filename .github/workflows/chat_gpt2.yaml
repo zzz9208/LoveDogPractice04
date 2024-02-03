@@ -33,9 +33,11 @@ jobs:
         node-version: 14
         clean: true
         with-dotenv: true
-
+        
     - name: Install Dependencies
-      run: npm install
+      run: |
+        npm install
+        npm install react-scripts
 
     - name: Install react-scripts
       run: |
@@ -43,7 +45,7 @@ jobs:
         npx create-react-app temp-app
         mv temp-app/node_modules/react-scripts .
         rm -rf temp-app
-        
+
     - name: Set Environment Variable for React App
       run: | 
         echo "REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }}" >> .env
@@ -100,15 +102,22 @@ jobs:
     - name: Set up Netlify CLI with Authentication Token
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NETLIFY_AUTH_TOKEN }}" > ~/.npmrc
 
+
     - name: Deploy to Netlify
-      #run: netlify deploy --prod --dir=build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
       run: |
-        echo ${{ github.workspace }}
         NETLIFY_SITE_ID=${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
-        BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
-        echo "Build Path: $BUILD_PATH"
-        netlify deploy --prod --dir="$BUILD_PATH" --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
+        netlify deploy --prod --dir="./build" --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
+
+    # - name: Deploy to Netlify
+    #   #run: netlify deploy --prod --dir=build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #   run: |
+    #     echo ${{ github.workspace }}
+    #     NETLIFY_SITE_ID=${{ secrets.NETLIFY_SITE_ID }}
+    #     NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #     BUILD_PATH=$(npm run build --silent | grep 'The files will be written to' | cut -d':' -f2)
+    #     echo "Build Path: $BUILD_PATH"
+    #     netlify deploy --prod --dir="$BUILD_PATH" --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
 
       env:
         CI: ""
