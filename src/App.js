@@ -1,7 +1,6 @@
 import './App.css';
-// import dotenv from 'dotenv';
 
-// dotenv.config();
+// secret 키 바꾸고, 깃헙에 재업로드해야 반영
 
 function App() {
   const myText = process.env.REACT_APP_ACTION_TEXT;
@@ -11,7 +10,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 78
+          Edit 79
           {myText}
         </p>
     
