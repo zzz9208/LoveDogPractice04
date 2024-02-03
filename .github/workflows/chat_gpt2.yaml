@@ -39,9 +39,10 @@ jobs:
 
     - name: Install react-scripts
       run: |
-        if [ ! -d "node_modules/react-scripts" ]; then
-          npm install react-scripts
-        fi
+        npm install -g create-react-app
+        npx create-react-app temp-app
+        mv temp-app/node_modules/react-scripts .
+        rm -rf temp-app
         
     - name: Set Environment Variable for React App
       run: | 
