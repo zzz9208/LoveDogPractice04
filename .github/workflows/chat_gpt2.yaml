@@ -96,6 +96,16 @@ jobs:
         clean: true
         with-dotenv: true
 
+
+    - name: Install Dependencies
+      run: npm install
+      
+    - name: Install react-scripts
+      run: |
+        if [ ! -d "node_modules/react-scripts" ]; then
+          npm install react-scripts
+        fi
+
     - name: Install Netlify CLI
       run: npm install -g netlify-cli@latest
 
