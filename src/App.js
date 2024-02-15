@@ -7,12 +7,10 @@ function App() {
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
-      // mobile
-      //setMobile(true);
+      // mobile      //setMobile(true);
       console.log("Mobile")
     } else {
-      // desktop
-      //setMobile(false);
+      // desktop      //setMobile(false);
       console.log("Not Mobile")
     }
   }, []);
@@ -25,7 +23,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 80
+          Edit 81
           {myText}
         </p>
     
