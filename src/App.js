@@ -1,16 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 // secret 키 바꾸고, 깃헙에 재업로드해야 반영
 
 function App() {
+  cosnt [mobile, setMobile] = useState(null);
+  const [todo, setTodo] = useState("");
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
-      // mobile      //setMobile(true);
+      // mobile   
+      setMobile(true);
       console.log("Mobile")
     } else {
-      // desktop      //setMobile(false);
+      // desktop      
+      setMobile(false);
       console.log("Not Mobile")
     }
   }, []);
@@ -23,8 +27,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 83
+          Edit 84
           {myText}
+          my device
+          {mobile}
         </p>
     
       </header>
