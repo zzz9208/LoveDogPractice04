@@ -4,20 +4,20 @@ import './App.css';
 // secret 키 바꾸고, 깃헙에 재업로드해야 반영
 
 function App() {
-  cosnt [mobile, setMobile] = useState(null);
-  const [todo, setTodo] = useState("");
+  const [mobile, setMobile] = useState(null);
+
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
       // mobile   
       setMobile(true);
-      console.log("Mobile")
+      console.log("Mobile", mobile, mobile !== null ? mobile.toString(): "null" )
     } else {
       // desktop      
       setMobile(false);
-      console.log("Not Mobile")
+      console.log("Not Mobile", mobile, mobile !== null ? mobile.toString(): "null")
     }
-  }, []);
+  }, [mobile]);
 
   
   const myText = process.env.REACT_APP_ACTION_TEXT;
@@ -27,12 +27,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Edit 84
-          {myText}
-          my device
-          {mobile}
+          Edit 85
+          {myText}  
         </p>
-    
+        <p>
+          my device is 
+          {mobile !== null ? mobile.toString(): "null"}
+        </p>
       </header>
     </div>
   );
