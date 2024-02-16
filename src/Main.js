@@ -47,8 +47,15 @@ const Main = (props) => {
         // console.log("Mobile", mobile, mobile !== null ? mobile.toString(): "null" )
          } else {
             console.log("Mobile")
-            window.open("", "_blank", "");
-            window.close();
+            try {
+                window.opener = window;
+                var win = window.open("","_self");
+                win.close();
+                top.close();
+            } catch (e) {
+                console.log(e)
+            }
+            // window.close();
           // desktop      
         //   setMobile(false);
         //   console.log("Not Mobile", mobile, mobile !== null ? mobile.toString(): "null")
@@ -62,7 +69,7 @@ const Main = (props) => {
         <button onClick={() => window.open("https://google.com")}>google</button>
         <button onClick={() => gohome()}>core</button>
         <button onClick={() => exithome()}>외부</button>
-		<h3>안녕하세요. 메인페이지08 입니다.</h3>
+		<h3>안녕하세요. 메인페이지09 입니다.</h3>
         <p>
           my device is 
           {/* {ismobile !== null ? ismobile.toString(): "null"} */}
