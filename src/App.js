@@ -1,7 +1,7 @@
 import './App.css';
 import Main from './Main';
 import Core from './Core';
- import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
 //import NotFound
 
 function App() {

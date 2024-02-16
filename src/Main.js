@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Main = (props) => {
     const movePage = useNavigate();
@@ -38,7 +39,7 @@ const Main = (props) => {
         <button onClick={() => window.open("https://google.com")}>google</button>
         <button onClick={() => gohome()}>core</button>
         <button onClick={() => exithome()}>외부</button>
-		<h3>안녕하세요. 메인페이지03 입니다.</h3>
+		<h3>안녕하세요. 메인페이지04 입니다.</h3>
         <p>
           my device is 
           {mobile !== null ? mobile.toString(): "null"}
