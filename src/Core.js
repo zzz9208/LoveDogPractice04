@@ -26,10 +26,10 @@ const Core = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
+        <h3>
           Edit 85
           {myText}  
-        </p>
+        </h3>
         <p>
           my device is 
           {mobile !== null ? mobile.toString(): "null"}
