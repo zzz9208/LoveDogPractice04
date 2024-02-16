@@ -17,10 +17,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run obfuscate", 
+    "build": "react-scripts build && npm run obfuscate",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "obfuscate": "javascript-obfuscator ./build --output ./build-obfuscated --self-defending 1" 
+    "obfuscate": "javascript-obfuscator ./build --output ./build-obfuscated --self-defending 1"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.0"
   }
 }

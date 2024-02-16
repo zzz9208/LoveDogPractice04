@@ -33,7 +33,7 @@ const Main = (props) => {
         <button onClick={() => window.open("https://google.com")}>google</button>
         <button onClick={() => gohome()}>core</button>
         <button onClick={() => exithome()}>외부</button>
-		<h3>안녕하세요. 메인페이지22 입니다.</h3>
+		<h3>안녕하세요. 메인페이지23 입니다.</h3>
         <p>
           my device is 
         </p>
