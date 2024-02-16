@@ -1,7 +1,8 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && npm run obfuscate"
   publish = "build-obfuscated"
   functions = "functions"
+  base = "/"
 
 [[redirects]]
   from = "/*"
