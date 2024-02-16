@@ -63,6 +63,11 @@ jobs:
       env:
         CI: ""
 
+    - name: Obfuscate React App
+      run: npm run obfuscate
+      env:
+        CI: ""
+
     - name: Check Build Output
       run: |
         npm run build
