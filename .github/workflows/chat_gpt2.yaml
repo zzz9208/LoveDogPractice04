@@ -71,7 +71,7 @@ jobs:
     - name: Check Build Output
       run: |
         npm run build
-        BUILD_PATH="./build"  # 수정 필요
+        BUILD_PATH="./build-obfuscated"  # 수정 필요
         if [ -z "$BUILD_PATH" ]; then
           echo "Error: Build path not found."
           exit 1
@@ -118,7 +118,7 @@ jobs:
         NETLIFY_SITE_ID=${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN=${{ secrets.NETLIFY_AUTH_TOKEN }}
         npm run build
-        netlify deploy --prod --dir="./build" --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
+        netlify deploy --prod --dir="./build-obfuscated" --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
       env:
         CI: ""
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
