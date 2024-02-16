@@ -50,7 +50,7 @@ const Main = (props) => {
             function WinClose(){
                 window.open('http://www.naver.com?','_self').close();
                 //window.opener=self;
-                window.close();
+                //window.close();
             }
             setTimeout(WinClose(), 3000)
             // window.close();
@@ -67,7 +67,7 @@ const Main = (props) => {
         <button onClick={() => window.open("https://google.com")}>google</button>
         <button onClick={() => gohome()}>core</button>
         <button onClick={() => exithome()}>외부</button>
-		<h3>안녕하세요. 메인페이지10 입니다.</h3>
+		<h3>안녕하세요. 메인페이지11 입니다.</h3>
         <p>
           my device is 
           {/* {ismobile !== null ? ismobile.toString(): "null"} */}
